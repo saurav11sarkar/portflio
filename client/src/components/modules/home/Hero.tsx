@@ -1,14 +1,24 @@
-import { Download } from "lucide-react";
+// /components/Hero.tsx
+"use client";
+
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import { FaGithub, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { Download } from "lucide-react";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+
+import { fadeIn, fadeInUp, scaleIn } from "@/utils/animations";
 
 const Hero = () => {
   return (
     <section className="w-full py-20 px-4 md:px-0 ">
       <div className="max-w-3xl mx-auto text-center">
-        <div className="flex justify-center mb-6">
+        <motion.div
+          {...scaleIn}
+          transition={{ ...scaleIn.transition, delay: 0.2 }}
+          className="flex justify-center mb-6"
+        >
           <Image
             src="/profile.avif"
             alt="Saurav Sarkar"
@@ -16,15 +26,30 @@ const Hero = () => {
             height={128}
             className="rounded-full w-32 h-32 object-cover ring-4 ring-primary shadow-lg"
           />
-        </div>
+        </motion.div>
 
-        <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-black dark:text-white">
-          Hi, I'm <span className="text-primary">Saurav Sarkar</span>
-        </h1>
+        <motion.h1
+          {...fadeInUp}
+          transition={{ ...fadeInUp.transition, delay: 0.3 }}
+          className="text-4xl md:text-6xl font-extrabold mb-4 text-black dark:text-white"
+        >
+          Hi, I&apos;m{" "}
+          <motion.span
+            {...fadeIn}
+            transition={{ ...fadeIn.transition, delay: 0.8 }}
+            className="text-primary"
+          >
+            Saurav Sarkar
+          </motion.span>
+        </motion.h1>
 
-        <p className="text-lg md:text-2xl text-gray-700 dark:text-gray-300 mb-8">
+        <motion.p
+          {...fadeInUp}
+          transition={{ ...fadeInUp.transition, delay: 0.5 }}
+          className="text-lg md:text-2xl text-gray-700 dark:text-gray-300 mb-8"
+        >
           I am a software engineer with a passion for building web applications.
-        </p>
+        </motion.p>
 
         <div className="flex justify-center space-x-6 mb-10">
           <Link

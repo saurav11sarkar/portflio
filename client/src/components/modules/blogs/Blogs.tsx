@@ -1,7 +1,11 @@
+"use client";
+
 import { blogs } from "@/contents/blogs";
 import Link from "next/link";
 import React from "react";
 import { FaCalendarAlt, FaClock } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer } from "@/utils/animations";
 
 const Blogs = () => {
   return (
@@ -10,10 +14,17 @@ const Blogs = () => {
         Latest Blog Posts
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        {blogs.map((blog) => (
-          <article
+      <motion.div
+        variants={staggerContainer}
+        initial="initial"
+        animate="animate"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+      >
+        {blogs.map((blog, index) => (
+          <motion.article
             key={blog.slug}
+            variants={fadeInUp}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
             className="bg-white dark:bg-dark/50 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 flex flex-col justify-between"
           >
             <div>
@@ -37,9 +48,9 @@ const Blogs = () => {
                 {blog.readTime}
               </span>
             </div>
-          </article>
+          </motion.article>
         ))}
-      </div>
+      </motion.div>
 
       <div className="text-center mt-14">
         <Link
